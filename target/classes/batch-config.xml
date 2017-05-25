@@ -29,14 +29,16 @@
 		class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="sql" value="select no,name from user_list"/>
-		<property name="rowMapper" value="mapper.CustomRowMapper"/>	
+		<property name="rowMapper">
+			<bean class="mapper.CustomRowMapper"></bean>
+		</property>	
 			
 	</bean>
 	
 	
 	<bean id="itemProcessor" class="processor.UserProcessor"></bean>
 	<bean id="itemWriter" class="org.springframework.batch.item.database.JdbcBatchItemWriter">
-		<property name="sql" value="INSERT INTO batch_user_list VALUES (1,'asdf')" />
+		<property name="sql" value="INSERT INTO batch_user_list VALUES (1,222)" />
         <property name="dataSource" ref="dataSource" />
 	</bean>
 	
